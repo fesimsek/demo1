@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+      <app-sidebar></app-sidebar>
+
+      <div style="width: 100%; text-align: center;">
+        <ion-title>Ana Sayfa</ion-title>
+      </div>
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" src="assets/icon/1.svg"></ion-icon>
+        </ion-button>
+        <ion-button>
+          <ion-icon slot="icon-only" src="assets/icon/2.svg"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+
+  
+
+  <ion-list>
+    <ion-item *ngFor="let item of items; let index">
+      <div class="result-list">
+        <div class="result-item">
+          <div class="class container">
+          <div class="item-image-container">
+            <img *ngIf="item.images && item.images[0]?.base64" [src]="item.images[0].base64" alt="item image" class="item-image"/>
+            <ion-badge color="danger" class="badge"><ion-icon name="star" class="star-icon"></ion-icon>{{ item.storeInfo.rate }}</ion-badge>
+          </div>
+          <div class="item-info">
+            <h1 style="font-family: Montserrat; font-weight: bold;">{{ item.title }}</h1>
+
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <p>{{ item.text }}</p>
+                  <p style="font-weight: bold;">{{ calculateDistance(latitude, longitude, item.location.coordinates[1], item.location.coordinates[0]) }} Km Yakında</p>
+                </div>
+                <div class="col">
+                  <p> 
+                      <ion-icon slot="icon-only" src="assets/icon/shopping_basket-24px.svg"></ion-icon>
+                     Min. Sipariş Tutarı: {{ item.storeInfo.minOrderPrice }}</p>
+                  <span [ngStyle]="{'color': isWorkingHours(item.storeInfo.workingHours[0]?.open, item.storeInfo.workingHours[0]?.close) ? 'green' : 'red'}">
+                    {{ isWorkingHours(item.storeInfo.workingHours[0]?.open, item.storeInfo.workingHours[0]?.close) ? 'İşletme Açık' : ' İşletme Kapalı' }} 
+                    {{ item.storeInfo.workingHours[0]?.open }}/{{ item.storeInfo.workingHours[0]?.close }}
+                  </span>
+                  
+                </div>
+              </div>
+            </div>
+        </div>
+
+        </div>
+      </div>
+      </div>
+    </ion-item>
+  </ion-list>
+  
+    
+
+  <ion-infinite-scroll (ionInfinite)="onIonInfinite($event)">
+    <ion-infinite-scroll-content loadingText="Lütfen Bekleyiniz..." loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

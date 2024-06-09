@@ -1,0 +1,38 @@
+.result-item {
+  display: flex;
+  align-items: flex-start; 
+}
+
+.item-image-container {
+  flex: 1; 
+  position: relative; 
+}
+
+.item-image {
+  padding-top: 5%;
+  width: 100%; 
+  height: auto; 
+  border-radius: 30px; 
+}
+
+.item-info {
+  flex: 1; 
+  padding: 20px; 
+  box-sizing: border-box; 
+}
+
+.badge {
+  position: absolute; 
+  top: 10%; 
+  left: 10px; 
+}
+
+p {
+  font-family: Montserrat; 
+  font-size:  70%;
+}
+
+span {
+  font-family: Montserrat; 
+  font-size:  80%;
+}
