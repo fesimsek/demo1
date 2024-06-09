@@ -9,10 +9,8 @@
 }
 
 .item-image {
-  padding-top: 5%;
   width: 100%; 
   height: auto; 
-  border-radius: 30px; 
 }
 
 .item-info {
@@ -36,3 +34,30 @@ span {
   font-family: Montserrat; 
   font-size:  80%;
 }
+
+  .centered-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .result-list {
+    width: 100%;
+    max-width: 600px; /* Adjust the max-width as per your requirement */
+    margin: 0 auto; /* Center the result-list */
+  }
+
+  .item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .item-image-container img {
+    border-radius: 10%;
+    margin-top: 1%;
+    max-width: 100%;
+    height: auto;
+  }
